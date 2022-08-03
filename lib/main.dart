@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   TextEditingController heightController = TextEditingController();
   TextEditingController weightController = TextEditingController();
 
-  double? bmi;
+  double bmi = 0;
   String message = '';
 
   void calculate() {
@@ -43,11 +43,11 @@ class _HomePageState extends State<HomePage> {
 
     setState(() {
       bmi = weight / (height * height);
-      if (bmi! < 18.5) {
+      if (bmi < 18.5) {
         message = "You are underweight";
-      } else if (bmi! < 25) {
+      } else if (bmi < 25) {
         message = 'You are healthy';
-      } else if (bmi! < 30) {
+      } else if (bmi < 30) {
         message = 'You are overweight';
       } else {
         message = 'You are obese';
@@ -79,9 +79,10 @@ class _HomePageState extends State<HomePage> {
                        padding: const EdgeInsets.only(top: 30,left: 60),
                        child: TextField(
                          keyboardType: TextInputType.number,
-                         style: TextStyle(fontSize: 40,color: Colors.cyan),
+                         style: const TextStyle(fontSize: 40,color: Colors.cyan),
                          controller: heightController,
-                         decoration: InputDecoration(
+                         decoration: const InputDecoration(
+                           border: InputBorder.none,
                            hintText: 'Height',
                            hintStyle: TextStyle(
                              fontSize: 40,
@@ -96,9 +97,10 @@ class _HomePageState extends State<HomePage> {
                         padding: const EdgeInsets.only(top: 30,left: 50),
                         child: TextField(
                           keyboardType: TextInputType.number,
-                          style: TextStyle(fontSize: 40,color: Colors.cyan),
+                          style: const TextStyle(fontSize: 40,color: Colors.cyan),
                           controller: weightController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
                             hintText: 'Weight',
                             hintStyle: TextStyle(
                               fontSize: 40,
@@ -118,105 +120,82 @@ class _HomePageState extends State<HomePage> {
                             fontWeight: FontWeight.bold,color: Colors.cyan),),
                     )),
                 Text(
-                  bmi == null ? '' : bmi!.toStringAsFixed(2),
+                  bmi == 0 ? '' : bmi.toStringAsFixed(2),
                   style: const TextStyle(
                       fontSize: 80,color: Colors.cyan),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   message,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 30,
                     color: Colors.cyan,
                   ),
                 ),
                 Align(
                   heightFactor: 1.5,
-                  widthFactor: 11,
+                  // widthFactor: 11,
                   alignment: Alignment.centerRight,
-                  child: Transform.scale(
-                    scaleX: 1.5,
-                    scaleY: 1,
-                    child: Container(
-                      height: 25,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),color: Colors.cyan),),
-                  ),
-                ),
-                Align(
-                  heightFactor: 2,
-                  widthFactor: 11,
-                  alignment: Alignment.centerRight,
-                  child: Transform.scale(
-                    scaleX: 1.5,
-                    scaleY: 1.1,
-                    child: Container(
-                      height: 25,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),color: Colors.cyan),),
-                  ),
+                  child: Container(
+                    height: 25,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        borderRadius: const BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
+                        color: Colors.cyan),),
                 ),
                 Align(
                   heightFactor: 1.5,
-                  widthFactor: 11,
                   alignment: Alignment.centerRight,
-                  child: Transform.scale(
-                    scaleX: 1.5,
-                    scaleY: 1,
-                    child: Container(
-                      height: 25,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),color: Colors.cyan),),
-                  ),
+                  child: Container(
+                    height: 25,
+                    width: 70,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
+                        color: Colors.cyan),),
                 ),
                 Align(
                   heightFactor: 1.5,
-                  widthFactor: 11,
-                  alignment: Alignment.centerLeft,
-                  child: Transform.scale(
-                    scaleX: 1.6,
-                    scaleY: 1.1,
-                    child: Container(
-                      height: 25,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),color: Colors.cyan),),
-                  ),
-                ),
-                Align(
-                  heightFactor: 2,
-                  widthFactor: 11,
-                  alignment: Alignment.centerLeft,
-                  child: Transform.scale(
-                    scaleX: 1.5,
-                    scaleY: 1,
-                    child: Container(
-                      height: 25,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),color: Colors.cyan),),
-                  ),
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    height: 25,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(topLeft: Radius.circular(20),bottomLeft: Radius.circular(20)),
+                        color: Colors.cyan),),
                 ),
                 Align(
                   heightFactor: 1.5,
-                  widthFactor: 11,
                   alignment: Alignment.centerLeft,
-                  child: Transform.scale(
-                    scaleX: 1.6,
-                    scaleY: 1.1,
-                    child: Container(
-                      height: 25,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),color: Colors.cyan),),
-                  ),
+                  child: Container(
+                    height: 25,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                        color: Colors.cyan),),
+                ),
+                Align(
+                  heightFactor: 1.5,
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    height: 25,
+                    width: 70,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                        color: Colors.cyan),),
+                ),
+                Align(
+                  heightFactor: 1.5,
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    height: 25,
+                    width: 40,
+                    decoration: const BoxDecoration(
+                        borderRadius: BorderRadius.only(topRight: Radius.circular(20),bottomRight: Radius.circular(20)),
+                        color: Colors.cyan),),
                 )
               ],
             ),
